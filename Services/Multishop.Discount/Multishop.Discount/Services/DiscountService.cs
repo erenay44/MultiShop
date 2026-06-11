@@ -27,9 +27,15 @@ namespace Multishop.Discount.Services
             }
         }
 
-        public Task DeleteCouponAsync(int id)
+        public async Task DeleteCouponAsync(int id)
         {
-            throw new NotImplementedException();
+            string query = "Delete From Coupons where CouponId =@couponId";
+            var parameters = new DynamicParameters();
+            parameters.Add("couponId",id);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query,parameters);
+            }
         }
 
         public Task<List<ResultCouponDto>> GetAllCouponAsync()
