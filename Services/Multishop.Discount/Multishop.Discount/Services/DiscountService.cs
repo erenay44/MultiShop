@@ -52,10 +52,10 @@ namespace Multishop.Discount.Services
         {
             string query = "Select * From Coupons Where CouponId=@couponId";
             var parameters = new DynamicParameters();
-            parameters.Add("@couponId", id);
+            parameters.Add("couponId", id);
             using (var connection = _context.CreateConnection())
             {
-                var values = await connection.QueryFirstOrDefaultAsync<GetByIdCouponDto>(query,parameters);
+                var values = await connection.QueryFirstOrDefaultAsync<GetByIdCouponDto>(query);
                 return values;
             }
         }
@@ -68,7 +68,6 @@ namespace Multishop.Discount.Services
             parameters.Add("@rate", updateCouponDto.Rate);
             parameters.Add("@isActive", updateCouponDto.IsActive);
             parameters.Add("@validDate", updateCouponDto.ValidDate);
-            parameters.Add("@couponId", updateCouponDto.CouponId);
             using (var connection = _context.CreateConnection())
             {
                 await connection.ExecuteAsync(query, parameters);
