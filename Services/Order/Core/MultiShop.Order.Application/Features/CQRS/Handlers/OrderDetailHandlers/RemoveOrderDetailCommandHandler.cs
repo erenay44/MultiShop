@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers
 {
-    public class RemoveOrderDetailQueryHandler
-    {
+
         public class RemoveOrderDetailCommandHandler
         {
             private readonly IRepository<OrderDetail> _repository;
@@ -25,5 +24,5 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.OrderDetailHandlers
                 await _repository.DeleteAsync(value);
             }
         }
-    }
+    
 }
